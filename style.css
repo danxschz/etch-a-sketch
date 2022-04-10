@@ -1,0 +1,32 @@
+body {
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 380px;
+  background: #CFBAF0;
+  padding: 40px;
+  align-items: center;
+}
+
+.square-row {
+  display:flex;
+}
+
+.square {
+  height: 30px;
+  width: 30px;
+  background: white;
+  border: 1px solid rgb(196, 196, 196);
+}
+
+.colored {
+  background: black;
+}
