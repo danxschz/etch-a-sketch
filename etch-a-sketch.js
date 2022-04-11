@@ -20,7 +20,7 @@ function createGrid(size) {
   currentSize = size;
 }
 
-createGrid(48);
+createGrid(24);
 
 
 // Delete grid
@@ -51,7 +51,7 @@ function colorGrid(randomColor = false) {
       if (randomColor === true) {
         square.style.background = getRandomColor();
       } else {
-        if (!(square.classList[1] == 'active')) {
+        if (!(square.classList[1] == 'active')) { // Doesn't count if the square is already painted
           if (rgbaShade > 0) {
             rgbaShade -= 10;
           }
@@ -69,7 +69,9 @@ randomColorsButton.addEventListener('click', () => {
   createGrid(currentSize);
   if (randomColor == true) {
     randomColor = false;
+    randomColorsButton.textContent = 'Random colors';
   } else {
+    randomColorsButton.textContent = 'Dark';
     randomColor = true;
   }
   rgbaShade = 100;
@@ -97,15 +99,15 @@ sizeButton.addEventListener('click', () => {
 });
 
 
-// Clean grid
-function cleanGrid() {
+// Clear grid
+function clearGrid() {
   deleteGrid();
   createGrid(currentSize);
   rgbaShade = 100;
   colorGrid(randomColor);
 }
 
-const cleanButton = document.querySelector('.clean-grid');
-cleanButton.addEventListener('click', () => {
-  cleanGrid();
+const clearButton = document.querySelector('.clear-grid');
+clearButton.addEventListener('click', () => {
+  clearGrid();
 });
