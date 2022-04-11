@@ -33,17 +33,50 @@ function deleteGrid() {
 
 
 // Color grid
-function colorGrid() {
+function getRandomColor() {
+  let o = Math.round;
+  let r = Math.random; 
+  let s = 255;
+  return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+}
+
+let rgbaShade = 100;
+let randomColor = false;
+
+function colorGrid(randomColor = false) {
   const squares = document.querySelectorAll('.square');
 
   squares.forEach(square => {
     square.addEventListener('mouseover', () => {
-      square.classList.add('colored');
+      if (randomColor === true) {
+        square.style.background = getRandomColor();
+      } else {
+        if (!(square.classList[1] == 'active')) {
+          if (rgbaShade > 0) {
+            rgbaShade -= 10;
+          }
+        }
+        square.style.background = `rgba(${rgbaShade}, ${rgbaShade}, ${rgbaShade})`;
+        square.classList.add('active');
+      }
     });
   });
 }
 
-colorGrid();
+const randomColorsButton = document.querySelector('.random-colors');
+randomColorsButton.addEventListener('click', () => {
+  deleteGrid();
+  createGrid(currentSize);
+  if (randomColor == true) {
+    randomColor = false;
+  } else {
+    randomColor = true;
+  }
+  rgbaShade = 100;
+  colorGrid(randomColor);
+});
+
+colorGrid(randomColor);
 
 
 // Change grid size
@@ -54,7 +87,8 @@ function changeSize() {
   }
   deleteGrid();
   createGrid(size);
-  colorGrid();
+  rgbaShade = 100;
+  colorGrid(randomColor);
 }
 
 const sizeButton = document.querySelector('.change-size');
@@ -67,7 +101,8 @@ sizeButton.addEventListener('click', () => {
 function cleanGrid() {
   deleteGrid();
   createGrid(currentSize);
-  colorGrid();
+  rgbaShade = 100;
+  colorGrid(randomColor);
 }
 
 const cleanButton = document.querySelector('.clean-grid');
