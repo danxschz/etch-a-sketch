@@ -18,6 +18,8 @@ function createGrid(size) {
     gridContainer.appendChild(squareRow);
   }
   currentSize = size;
+  const currentSizeDiv = document.querySelector('.current-size');
+  currentSizeDiv.textContent = `${size} x ${size}`
 }
 
 createGrid(24);
@@ -37,7 +39,7 @@ function getRandomColor() {
   let o = Math.round;
   let r = Math.random; 
   let s = 255;
-  return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+  return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ')';
 }
 
 let rgbaShade = 100;
@@ -50,6 +52,7 @@ function colorGrid(randomColor = false) {
     square.addEventListener('mouseover', () => {
       if (randomColor === true) {
         square.style.background = getRandomColor();
+        console.log(getRandomColor());
       } else {
         if (!(square.classList[1] == 'active')) { // Doesn't count if the square is already painted
           if (rgbaShade > 0) {
